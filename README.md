@@ -96,7 +96,7 @@ git clone
 
 2. **Build the Project**
    
-   ```sh
+```sh
 dotnet build
 ```
 
@@ -104,7 +104,7 @@ dotnet build
 
 3. **Run the Project**    
    
-   ```sh
+```sh
 dotnet run
 ```
 
