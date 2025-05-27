@@ -10,6 +10,7 @@ The Task Management Project is a system designed to manage tasks and subtasks ef
 - Notifications for task status changes
 - Sorting tasks by estimation time
 - Flexible object creation using the Builder pattern
+- Accurate time logging for tasks and subtasks
 
 ## Folder Structure
 
@@ -22,7 +23,12 @@ The project is organized into the following directories:
   Contains core models used throughout the project, including tasks, subtasks, and notifications.
 
   - **`models/status/`**  
-    Includes classes representing task states, such as `Todo`, `InProgress`, `CodeReview`, `QA`, and `Done`. Each class encapsulates the logic for transitioning between states.
+    Includes classes representing task states, such as:
+    - **`Todo.cs`**: Represents tasks in the "To Do" state.
+    - **`InProgress.cs`**: Defines the behavior for tasks in the "In Progress" state.
+    - **`CodeReview.cs`**: Handles the transition logic for tasks in the "Code Review" state.
+    - **`QA.cs`**: Manages the transition logic for tasks in the "QA" state.
+    - **`Done.cs`**: Represents tasks that are completed.
 
   - **`models/task/`**  
     Contains the `Task` and `SubTask` classes, as well as the `SubTaskBuilder` class, which implements the Builder pattern for flexible object creation.
@@ -63,21 +69,66 @@ This project incorporates the following design patterns:
 
 ## Solution Context
 
-The project is organized into several files and classes:
-
 ### Key Files:
-- **`TaskManagementProject/models/status/CodeReview.cs`**: Handles the transition logic for tasks in the "Code Review" state.
-- **`TaskManagementProject/models/status/QA.cs`**: Manages the transition logic for tasks in the "QA" state.
-- **`TaskManagementProject/models/status/InProgress.cs`**: Defines the behavior for tasks in the "In Progress" state.
-- **`TaskManagementProject/models/status/Todo.cs`**: Represents tasks in the "To Do" state.
-- **`TaskManagementProject/models/status/Done.cs`**: Represents tasks that are completed.
-- **`TaskManagementProject/models/task/SubTaskBuilder.cs`**: Implements the Builder pattern for creating subtasks.
-- **`TaskManagementProject/models/sorter and filter task/sorter/SortByEstimationTime.cs`**: Implements the Strategy pattern for sorting tasks.
+These files are central to the functionality of the Task Management Project:
+
+1. **`TaskManagementProject/models/task/Task.cs`**  
+   - Defines the `Task` class, which is the core entity of the project.  
+   - Manages task properties like name, description, estimation time, and state transitions.  
+   - Includes methods like `NextStatus()` for transitioning between states and `AddSubTask()` for managing subtasks.
+
+2. **`TaskManagementProject/models/task/SubTask.cs`**  
+   - Defines the `SubTask` class, which represents smaller units of work tied to a parent task.  
+   - Includes properties for subtask name, parent task reference, and logged time.  
+   - Provides methods like `LogTime()` for tracking time spent on subtasks.
+
+3. **`TaskManagementProject/models/task/SubTaskBuilder.cs`**  
+   - Implements the Builder pattern for creating `SubTask` objects.  
+   - Allows flexible construction of subtasks with optional properties like description and logged time.
+
+4. **`TaskManagementProject/models/status/Todo.cs`**  
+   - Represents tasks in the "To Do" state.  
+   - Contains logic for transitioning to the `InProgress` state.
+
+5. **`TaskManagementProject/models/status/InProgress.cs`**  
+   - Manages tasks in the "In Progress" state.  
+   - Allows transitions to the `CodeReview` state.
+
+6. **`TaskManagementProject/models/status/CodeReview.cs`**  
+   - Handles tasks in the "Code Review" state.  
+   - Enables transitions to the `QA` state.
+
+7. **`TaskManagementProject/models/status/QA.cs`**  
+   - Manages tasks in the "QA" state.  
+   - Allows transitions to the `Done` state.
+
+8. **`TaskManagementProject/models/status/Done.cs`**  
+   - Represents tasks that are completed.  
+   - Prevents further transitions.
+
+9. **`TaskManagementProject/models/sorter and filter task/sorter/SortByEstimationTime.cs`**  
+   - Implements sorting logic for tasks based on their estimated completion time.  
+   - Uses the Strategy pattern to allow flexible sorting algorithms.
 
 ### Key Classes:
-- **`Task`**: Represents a task and manages its state transitions.
-- **`SubTaskBuilder`**: Provides a flexible way to construct subtasks.
-- **`SortByEstimationTime`**: Implements sorting logic for tasks.
+These classes are critical to the implementation of the solution:
+
+1. **`Task`**  
+   - Represents a task and manages its state transitions, logged time, and subtasks.  
+   - Includes methods like `NextStatus()` and `AddSubTask()`.
+
+2. **`SubTask`**  
+   - Represents a subtask and includes logic for updating logged time.  
+   - Includes methods like `LogTime()` and `GetParentTask()`.
+
+3. **`SubTaskBuilder`**  
+   - Provides a flexible way to construct subtasks with optional properties.
+
+4. **`Todo`, `InProgress`, `CodeReview`, `QA`, `Done`**  
+   - State classes that encapsulate the logic for transitioning tasks between statuses.
+
+5. **`SortByEstimationTime`**  
+   - Implements sorting logic for tasks based on their estimated completion time.
 
 ## Getting Started
 
