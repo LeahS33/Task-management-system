@@ -1,4 +1,4 @@
-# Task Management Project
+# Task Management System
 
 ## 📖 Description
 The **Task Management Project** is a system designed to efficiently manage tasks and subtasks. It enables users to:
