@@ -88,8 +88,45 @@ The project is built with scalability, maintainability, and flexibility in mind,
 
 ## 🚀 Getting Started
 
-To get started with the project, follow these steps:
+1. **Clone the Repository**  
 
 ```sh
 git clone
 ```
+
+2. **Build the Project**
+   
+   ```sh
+dotnet build
+```
+
+
+
+3. **Run the Project**    
+   
+   ```sh
+dotnet run
+```
+
+4. **Start Managing Tasks**  
+   - Create tasks and subtasks.
+   - Transition tasks through statuses.
+   - Sort tasks by estimation time.
+
+---
+
+## 🛠️ Technologies Used
+- **C#**
+- **.NET Core**
+
+---
+
+## 📜 License
+This project is licensed under the **MIT License**. See the `LICENSE` file for details.
+
+---
+
+## 📧 Contact
+For questions or feedback, feel free to reach out via email or GitHub issues.
+
+   
